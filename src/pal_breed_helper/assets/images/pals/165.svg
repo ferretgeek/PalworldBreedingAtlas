@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#163847"/>
+      <stop offset="1" stop-color="#0b1d2a"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="84" fill="url(#bg)"/>
+  <circle cx="256" cy="210" r="132" fill="#1f5968" stroke="#71d4c5" stroke-width="12"/>
+  <path d="M172 216c28-58 140-58 168 0-18 72-150 72-168 0Z" fill="#d5f7ef" opacity=".9"/>
+  <circle cx="218" cy="210" r="13" fill="#102a35"/>
+  <circle cx="294" cy="210" r="13" fill="#102a35"/>
+  <text x="256" y="78" text-anchor="middle" fill="#92eadc" font-family="Segoe UI,Microsoft YaHei,sans-serif" font-size="38" font-weight="700">#165</text>
+  <text x="256" y="400" text-anchor="middle" fill="#ffffff" font-family="Microsoft YaHei,Segoe UI,sans-serif" font-size="42" font-weight="700">詹兔曼</text>
+  <text x="256" y="448" text-anchor="middle" fill="#a7c5cd" font-family="Segoe UI,sans-serif" font-size="23">Lapiron</text>
+  <text x="256" y="486" text-anchor="middle" fill="#718f98" font-family="Microsoft YaHei,Segoe UI,sans-serif" font-size="18">1.0 本地资源待导出</text>
+</svg>

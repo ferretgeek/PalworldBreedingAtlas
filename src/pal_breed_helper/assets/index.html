@@ -1,0 +1,467 @@
+<!doctype html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="dark light">
+  <title>帕鲁配种助手</title>
+  <link rel="icon" href="palicon.ico">
+  <script>
+    (function () {
+      try {
+        var theme = localStorage.getItem("pal-breed-helper.theme");
+        if (["night", "light", "prism"].includes(theme)) document.documentElement.dataset.theme = theme;
+      } catch (_) {}
+    })();
+  </script>
+  <link rel="stylesheet" href="styles.css?v=3.5.0">
+</head>
+<body>
+  <a class="skip-link" href="#mainContent">跳到主要内容</a>
+
+  <div class="ambient" aria-hidden="true">
+    <div class="aurora aurora-a"></div>
+    <div class="aurora aurora-b"></div>
+    <div class="aurora aurora-c"></div>
+    <div class="starfield starfield-a"></div>
+    <div class="starfield starfield-b"></div>
+    <img class="ambient-pal ap-1" src="images/pals/202.webp" alt="">
+    <img class="ambient-pal ap-2" src="images/pals/200.webp" alt="">
+    <img class="ambient-pal ap-3" src="images/pals/198.webp" alt="">
+    <img class="ambient-pal ap-4" src="images/pals/199.webp" alt="">
+    <img class="ambient-pal ap-5" src="images/pals/189.webp" alt="">
+    <img class="ambient-pal ap-6" src="images/pals/139.webp" alt="">
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-mark" src="images/pals/1.webp" alt="">
+      <div>
+        <div class="brand-title">帕鲁配种助手</div>
+        <div class="brand-subtitle">存档、配种与图鉴，一处完成</div>
+      </div>
+    </div>
+
+    <div class="topbar-actions">
+      <div class="data-summary" aria-label="数据状态">
+        <span class="status-pill" id="buildBadge">Build 待核验</span>
+        <span class="status-pill" id="palCountBadge">0 / 287</span>
+        <span class="status-pill status-pending" id="sourceBadge">来源校验中</span>
+      </div>
+      <div class="topbar-controls">
+        <button class="server-save-control" id="serverSaveControl" type="button" hidden>
+          <span>服务器存档</span>
+          <strong id="serverSaveStatusText">检查中</strong>
+        </button>
+        <button class="cross-world-toggle" id="crossWorldToggle" type="button" aria-pressed="false" hidden>
+          <span id="crossWorldToggleAction">显示</span>
+          <span>跨界基因</span>
+          <strong id="crossWorldToggleCount">0</strong>
+        </button>
+        <div class="theme-picker" role="group" aria-label="界面主题">
+          <button class="theme-option" type="button" data-theme-option="night" aria-pressed="true" title="幻夜深色">
+            <span class="theme-swatch night-swatch" aria-hidden="true"></span><span class="theme-name">幻夜</span>
+          </button>
+          <button class="theme-option" type="button" data-theme-option="light" aria-pressed="false" title="云海浅色">
+            <span class="theme-swatch light-swatch" aria-hidden="true"></span><span class="theme-name">云海</span>
+          </button>
+          <button class="theme-option" type="button" data-theme-option="prism" aria-pressed="false" title="幻彩浅色">
+            <span class="theme-swatch prism-swatch" aria-hidden="true"></span><span class="theme-name">幻彩</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="app-shell">
+    <nav class="app-nav" aria-label="主要功能">
+      <div class="nav-heading"><span>工作台</span><small>离线数据工具</small></div>
+      <div class="nav-scroll" role="tablist" aria-label="功能页面">
+        <button class="nav-tab is-active" id="tab-planner" role="tab" aria-selected="true" aria-controls="view-planner" data-view="planner"><span class="nav-index">01</span><span>配种规划</span></button>
+        <button class="nav-tab" id="tab-reverse" role="tab" aria-selected="false" aria-controls="view-reverse" data-view="reverse"><span class="nav-index">02</span><span>反向发现</span></button>
+        <button class="nav-tab" id="tab-dex" role="tab" aria-selected="false" aria-controls="view-dex" data-view="dex"><span class="nav-index">03</span><span>帕鲁图鉴</span></button>
+        <button class="nav-tab" id="tab-tools" role="tab" aria-selected="false" aria-controls="view-tools" data-view="tools"><span class="nav-index">04</span><span>配方工具</span></button>
+        <button class="nav-tab" id="tab-settings" role="tab" aria-selected="false" aria-controls="view-settings" data-view="settings"><span class="nav-index">05</span><span>数据与设置</span></button>
+      </div>
+      <div class="nav-mascot" aria-hidden="true">
+        <img class="nav-mascot-img" src="images/pals/17.webp" alt="">
+        <div class="nav-mascot-glow"></div>
+      </div>
+      <div class="nav-footnote"><strong>287</strong><span>只正式帕鲁<br>Build 24088745</span></div>
+    </nav>
+
+    <main id="mainContent" class="app-main" tabindex="-1">
+    <section class="app-view is-active" id="view-planner" role="tabpanel" aria-labelledby="tab-planner" data-view-panel="planner">
+      <div class="planner-layout">
+        <section class="target-hub" aria-labelledby="plannerHeading">
+          <div class="section-heading target-hub-heading">
+            <div>
+              <p class="eyebrow">第 1 步 · 选择目标</p>
+              <h1 id="plannerHeading">先按属性选目标，再生成配种路线</h1>
+              <p>目标很多时不必逐个搜索；先选一种属性，再从战斗或工作推荐中直接挑选。</p>
+            </div>
+          </div>
+
+          <section class="target-shortcuts" aria-labelledby="targetShortcutsHeading">
+            <div class="target-shortcuts-heading">
+              <div>
+                <span class="target-step">属性筛选 · 单选</span>
+                <h2 id="targetShortcutsHeading">按属性浏览目标帕鲁</h2>
+                <small>每次只筛选一种属性，可再次点击取消。</small>
+              </div>
+            </div>
+            <div class="element-filters target-element-grid" id="homeTargetElements" aria-label="首页目标属性单选筛选"></div>
+            <div class="target-recommendation-bar">
+              <div><strong>选择推荐方向</strong><span id="targetRecommendationContext">下方展示当前属性的代表目标</span></div>
+              <div class="mini-tabs" role="group" aria-label="快捷目标类型">
+                <button type="button" data-target-recommendation="battle" aria-pressed="true">强力战斗</button>
+                <button type="button" data-target-recommendation="work" aria-pressed="false">强力工作</button>
+              </div>
+            </div>
+            <div class="target-purpose-filters" id="targetPurposeFilters">
+              <label>战斗定位<select id="homeCombatFilter"><option value="">全部定位</option><option value="attack">高攻击</option><option value="tank">高生存</option><option value="speed">高速坐骑</option><option value="balanced">均衡战斗</option></select></label>
+              <label>工作类型<select id="homeWorkFilter"></select></label>
+            </div>
+            <div class="active-filter-strip" id="homeFilterSummary" aria-live="polite"></div>
+            <div class="target-recommendations" id="targetRecommendations"></div>
+            <div class="target-all-action">
+              <div>
+                <strong>强力推荐只是快捷入口</strong>
+                <span id="targetAllActionHint">你仍可查看并选择全部属性的所有帕鲁。</span>
+              </div>
+              <button class="button primary" id="openAllTargetsForElement" type="button">查看全部帕鲁</button>
+            </div>
+          </section>
+
+          <div class="field-group target-direct-search">
+            <label for="targetInput">已经知道目标？直接搜索</label>
+            <div class="input-action-row target-input-row">
+              <input type="text" id="targetInput" list="palList" placeholder="输入中文名或英文名" autocomplete="off" aria-describedby="targetHint targetError">
+              <button class="button secondary" id="openTargetPicker" type="button">全部目标</button>
+              <button class="icon-text-button secondary" id="favoriteTarget" type="button" aria-pressed="false" disabled>收藏</button>
+            </div>
+            <p class="field-hint" id="targetHint">也可输入名称，或从最近使用的目标中快速选择。</p>
+            <p class="field-error" id="targetError" role="alert"></p>
+            <div class="quick-access-panel" id="quickAccessPanel">
+              <div class="quick-list" id="recentTargets" aria-label="最近目标"></div>
+              <div class="saved-route-shelf" id="savedRouteShelf" aria-label="最近与收藏路线"></div>
+            </div>
+          </div>
+          <button class="button primary continue-plan-button" id="continueToPlan" type="button">继续：设置路线条件</button>
+        </section>
+
+        <aside class="control-panel" aria-labelledby="plannerControlsHeading">
+          <div class="section-heading compact-heading">
+            <div>
+              <p class="eyebrow">第 2 步 · 路线条件</p>
+              <h2 id="plannerControlsHeading">规划策略与库存</h2>
+            </div>
+          </div>
+
+          <div class="planner-target-summary" id="plannerTargetSummary" aria-live="polite"></div>
+
+          <fieldset class="field-group strategy-group">
+            <legend>规划策略</legend>
+            <div class="segmented-control">
+              <label><input type="radio" name="strategy" value="fastest" checked><span><strong>最快成型</strong><small>操作最少</small></span></label>
+              <label><input type="radio" name="strategy" value="few-extra"><span><strong>少补充</strong><small>少找新帕鲁</small></span></label>
+              <label><input type="radio" name="strategy" value="zero-extra"><span><strong>零补充</strong><small>只用库存</small></span></label>
+              <label><input type="radio" name="strategy" value="balanced"><span><strong>综合权衡</strong><small>步骤与补充兼顾</small></span></label>
+            </div>
+            <p class="field-hint" id="strategyHint">最快成型优先减少操作；“需额外获取”不等于可在野外直接抓取。</p>
+          </fieldset>
+
+          <details class="inventory-panel" id="inventoryDetails">
+            <summary>
+              <span>
+                <strong>我的库存</strong>
+                <small id="inventorySummary">尚未载入</small>
+              </span>
+              <span class="summary-action">管理</span>
+            </summary>
+            <div class="inventory-body">
+              <div class="inventory-source-summary" id="inventorySourceSummary"></div>
+              <div class="field-group no-margin">
+                <label for="ownInput">添加帕鲁</label>
+                <div class="input-action-row">
+                  <input type="text" id="ownInput" list="palList" placeholder="中文名或英文名" autocomplete="off" aria-describedby="ownError">
+                  <button class="button secondary" id="addOwn" type="button">添加</button>
+                </div>
+                <p class="field-error" id="ownError" role="alert"></p>
+              </div>
+              <div class="inventory-toolbar">
+                <input type="search" id="inventorySearch" placeholder="筛选库存" aria-label="筛选库存">
+                <button class="button quiet" id="importInventory" type="button">导入</button>
+                <button class="button quiet danger-text" id="clearOwn" type="button">清空</button>
+              </div>
+              <div class="inventory-list" id="inventoryList" aria-live="polite"></div>
+            </div>
+          </details>
+
+          <details class="advanced-panel" id="advancedDetails">
+            <summary>词条与高级选项</summary>
+            <div class="advanced-body">
+              <div class="field-group no-margin">
+                <label for="passives">想保留的被动词条</label>
+                <textarea id="passives" rows="2" placeholder="用逗号分隔，例如：传说，工匠精神"></textarea>
+                <p class="field-hint">仅用于标记需要延续库存血脉的步骤，不模拟随机继承概率。</p>
+              </div>
+              <label class="check-row">
+                <input type="checkbox" id="requireOwned">
+                <span>方案必须使用至少一种库存帕鲁</span>
+              </label>
+            </div>
+          </details>
+
+          <button class="button primary solve-button" id="solve" type="button">第 3 步 · 生成配种路线</button>
+          <p class="panel-status" id="plannerStatus" role="status" aria-live="polite"></p>
+        </aside>
+
+        <section class="workspace-panel" aria-labelledby="plannerResultsHeading">
+          <div class="workspace-heading">
+            <div>
+              <p class="eyebrow">第 3 步 · 路线结果</p>
+              <h2 id="plannerResultsHeading">先选择目标并生成路线</h2>
+            </div>
+            <div class="workspace-actions">
+              <button class="button quiet" id="routeDensity" type="button" aria-pressed="false">紧凑显示</button>
+              <button class="button quiet" id="favoriteCurrentRoute" type="button" aria-pressed="false" disabled>收藏路线</button>
+              <button class="button quiet" id="copyCompactPlan" type="button" disabled>复制执行版</button>
+              <button class="button quiet" id="copyCurrentPlan" type="button" disabled>复制详情</button>
+              <button class="button quiet" id="printCurrentPlan" type="button" disabled>打印</button>
+            </div>
+          </div>
+          <div class="result-surface" id="plannerResults" aria-live="polite">
+            <div class="empty-state">
+              <img src="images/pals/1.webp" alt="">
+              <h3>路线会显示在这里</h3>
+              <p>桌面端可一边调整条件，一边查看结果；移动端也会保持主操作随手可达。</p>
+            </div>
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <section class="app-view" id="view-reverse" role="tabpanel" aria-labelledby="tab-reverse" data-view-panel="reverse" hidden>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">反向发现</p>
+          <h1>看看现有库存最容易配出什么</h1>
+          <p>结果按需要补充的物种数和配种操作数排序，不把“额外获取”误写成“野外抓取”。</p>
+        </div>
+        <button class="button primary" id="runReverse" type="button">开始反查</button>
+        <img class="page-heading-pal php-reverse" src="images/pals/111.webp" alt="" aria-hidden="true">
+      </div>
+      <div class="reverse-inventory-banner" id="reverseInventoryBanner" aria-live="polite"></div>
+      <div class="filter-bar" aria-label="反查筛选">
+        <label class="check-row compact"><input type="checkbox" id="only5" checked><span>只看基础工作适性 5 级以上</span></label>
+        <label>工作类型
+          <select id="reverseWork"></select>
+        </label>
+        <label>最多补充
+          <select id="reverseMaxExtra">
+            <option value="0">0 种</option>
+            <option value="1">1 种</option>
+            <option value="2" selected>2 种</option>
+            <option value="3">3 种</option>
+            <option value="4">4 种</option>
+          </select>
+        </label>
+        <label>结果排序
+          <select id="reverseSort"><option value="cost">补充最少</option><option value="operations">操作最少</option><option value="work">工作最强</option><option value="combat">战斗最强</option><option value="number">图鉴编号</option></select>
+        </label>
+        <button class="button quiet reverse-reset" id="reverseReset" type="button">重置筛选</button>
+      </div>
+      <div class="filter-section reverse-element-section">
+        <div class="filter-section-label"><strong>结果属性</strong><span>单选，可再次点击取消</span></div>
+        <div class="element-filters" id="reverseElements" aria-label="反向发现属性单选筛选"></div>
+      </div>
+      <div class="active-filter-strip" id="reverseFilterSummary" aria-live="polite"></div>
+      <div class="compare-tray" id="reverseCompareTray" hidden></div>
+      <p class="panel-status reverse-status" id="reverseStatus" role="status" aria-live="polite"></p>
+      <div class="reverse-results" id="reverseResults">
+        <div class="empty-state compact-empty"><img src="images/pals/111.webp" alt=""><h2>尚未反查</h2><p>载入库存后点击“开始反查”。基础工作适性最高 8，可通过强化提升至 10。</p></div>
+      </div>
+    </section>
+
+    <section class="app-view" id="view-dex" role="tabpanel" aria-labelledby="tab-dex" data-view-panel="dex" hidden>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">帕鲁图鉴</p>
+          <h1>搜索、筛选并管理收藏</h1>
+          <p class="result-count" id="dexCount">正在读取图鉴…</p>
+        </div>
+        <img class="page-heading-pal" src="images/pals/128.webp" alt="" aria-hidden="true">
+      </div>
+      <div class="dex-toolbar">
+        <label class="search-field"><span>搜索</span><input type="search" id="dexSearch" placeholder="输入名称或 #编号" autocomplete="off"></label>
+        <label><span>工作适性</span><select id="dexWork"></select></label>
+        <label><span>最低等级</span><select id="dexWorkLevel"><option value="0">不限</option><option value="3">3 级以上</option><option value="4">4 级以上</option><option value="5">5 级以上</option></select></label>
+        <label><span>战斗定位</span><select id="dexCombatRole"><option value="">全部定位</option><option value="attack">高攻击</option><option value="tank">高生存</option><option value="speed">高速坐骑</option><option value="balanced">均衡战斗</option></select></label>
+        <label><span>获取方式</span><select id="dexAcquisition"><option value="">全部来源</option><option value="breedable">可跨种配出</option><option value="external">需外部起步</option><option value="wild">有野外等级记录</option></select></label>
+        <label><span>排序</span><select id="dexSort"><option value="number">图鉴编号</option><option value="combat">战斗能力</option><option value="work">工作能力</option><option value="speed">移动速度</option></select></label>
+        <label class="check-row compact"><input type="checkbox" id="dexOwnOnly"><span>只看已有</span></label>
+        <label class="check-row compact"><input type="checkbox" id="dexFavoriteOnly"><span>只看收藏</span></label>
+        <button class="button quiet dex-reset" id="dexReset" type="button">重置筛选</button>
+      </div>
+      <div class="filter-section">
+        <div class="filter-section-label"><strong>属性</strong><span>单选，可再次点击取消</span></div>
+        <div class="element-filters" id="dexElements" aria-label="属性单选筛选"></div>
+      </div>
+      <div class="active-filter-strip" id="dexFilterSummary" aria-live="polite"></div>
+      <div class="dex-grid" id="dexGrid"></div>
+    </section>
+
+    <section class="app-view" id="view-tools" role="tabpanel" aria-labelledby="tab-tools" data-view-panel="tools" hidden>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">配方工具</p>
+          <h1>快速查子代或全部亲本组合</h1>
+          <p>适合已经有明确亲本，或想手动比较目标全部配方的情况。</p>
+        </div>
+        <img class="page-heading-pal" src="images/pals/70.webp" alt="" aria-hidden="true">
+      </div>
+      <div class="tool-grid">
+        <section class="tool-card" aria-labelledby="parentsToolHeading">
+          <span class="tool-kicker">已知亲本</span>
+          <h2 id="parentsToolHeading">父母 → 子代</h2>
+          <p class="tool-description">选好两名亲本，立即查看它们能配出的子代。</p>
+          <div class="two-inputs">
+            <label>亲本 A<input type="text" id="parentAInput" list="palList" placeholder="输入帕鲁"></label>
+            <label>亲本 B<input type="text" id="parentBInput" list="palList" placeholder="输入帕鲁"></label>
+          </div>
+          <button class="button primary tool-primary-action" id="lookupChild" type="button">查询子代</button>
+          <div class="tool-results" id="childResults" aria-live="polite"><div class="tool-empty">输入两名亲本后点击“查询子代”。</div></div>
+        </section>
+        <section class="tool-card" aria-labelledby="recipesToolHeading">
+          <span class="tool-kicker">已知目标</span>
+          <h2 id="recipesToolHeading">目标 → 全部亲本配方</h2>
+          <p class="tool-description">输入目标帕鲁，比较所有亲本组合，库存可用方案优先。</p>
+          <label>目标帕鲁<input type="text" id="recipeTargetInput" list="palList" placeholder="输入目标帕鲁"></label>
+          <div class="inline-options">
+            <label class="check-row compact"><input type="checkbox" id="recipesOwnedFirst" checked><span>库存可用优先</span></label>
+          </div>
+          <button class="button primary tool-primary-action" id="lookupRecipes" type="button">查看全部配方</button>
+          <div class="tool-results recipe-results" id="recipeResults" aria-live="polite"><div class="tool-empty">输入目标后点击“查看全部配方”。</div></div>
+        </section>
+      </div>
+    </section>
+
+    <section class="app-view" id="view-settings" role="tabpanel" aria-labelledby="tab-settings" data-view-panel="settings" hidden>
+      <div class="page-heading">
+        <div>
+          <p class="eyebrow">数据与设置</p>
+          <h1>确认数据来源，管理本地状态</h1>
+          <p>此页面不联网；库存、收藏和最近目标只保存在当前浏览器。</p>
+        </div>
+        <img class="page-heading-pal" src="images/pals/1.webp" alt="" aria-hidden="true">
+      </div>
+      <div class="settings-grid">
+        <section class="settings-card">
+          <h2>数据状态</h2>
+          <dl class="data-list" id="dataDetails"></dl>
+          <div class="source-list" id="sourceList"></div>
+        </section>
+        <section class="settings-card">
+          <h2>库存与偏好</h2>
+          <p>可导出为 JSON，在其他浏览器或电脑上恢复。</p>
+          <div class="button-stack">
+            <button class="button secondary" id="exportInventory" type="button">导出库存与设置</button>
+            <button class="button secondary" id="settingsImport" type="button">导入库存与设置</button>
+            <button class="button quiet danger-text" id="resetLocalState" type="button">清除本地状态</button>
+          </div>
+        </section>
+        <section class="settings-card">
+          <h2>使用说明</h2>
+          <ul class="plain-list">
+            <li>“需额外获取”只表示不在当前库存，不代表一定能在野外捕捉。</li>
+            <li>无法由其他物种配出的帕鲁会单独标记；库存为零时，至少要先捕捉或特殊获取两只异性个体。</li>
+            <li>旧版配方可能没有性别字段；界面会明确标记为“性别未注明”。</li>
+            <li>基础工作适性最高 8，可通过强化提升至 10。</li>
+            <li>快捷键：Ctrl/⌘ + K 搜索，Ctrl/⌘ + Enter 执行当前规划或反查，Alt + 1～5 切换页面。</li>
+          </ul>
+        </section>
+      </div>
+    </section>
+    </main>
+  </div>
+
+  <dialog class="inventory-dialog" id="inventoryPalDialog" aria-labelledby="inventoryPalDialogTitle">
+    <div class="target-picker-heading">
+      <div>
+        <p class="eyebrow">库存个体</p>
+        <h2 id="inventoryPalDialogTitle">管理帕鲁个体</h2>
+        <p>性别、等级与词条会用于判断路线准备情况；修改只保存在本工具中。</p>
+      </div>
+      <button class="dialog-close static-close" id="closeInventoryPalDialog" type="button" aria-label="关闭个体管理">关闭</button>
+    </div>
+    <div id="inventoryPalDialogBody"></div>
+  </dialog>
+
+  <dialog class="target-picker-dialog" id="targetPickerDialog" aria-labelledby="targetPickerTitle">
+    <div class="target-picker-heading">
+      <div>
+        <p class="eyebrow">目标浏览器</p>
+        <h2 id="targetPickerTitle">按属性与用途选择目标帕鲁</h2>
+        <p>战斗榜按基础生命、攻击、防御综合排序；工作榜按基础工作适性等级与覆盖工种排序。</p>
+      </div>
+      <button class="dialog-close static-close" id="closeTargetPicker" type="button" aria-label="关闭目标选择">关闭</button>
+    </div>
+    <div class="target-picker-toolbar">
+      <label class="search-field"><span>搜索</span><input type="search" id="targetPickerSearch" placeholder="名称或编号" autocomplete="off"></label>
+      <div class="picker-mode-tabs" role="group" aria-label="目标排序方式">
+        <button type="button" data-target-mode="battle" aria-pressed="true">强力战斗</button>
+        <button type="button" data-target-mode="work" aria-pressed="false">强力工作</button>
+        <button type="button" data-target-mode="all" aria-pressed="false">全部图鉴</button>
+      </div>
+    </div>
+    <div class="filter-section target-element-section">
+      <div class="filter-section-label"><strong>目标属性</strong><span>单选，可再次点击取消</span></div>
+      <div class="element-filters" id="targetPickerElements" aria-label="目标属性单选筛选"></div>
+    </div>
+    <p class="target-picker-status" id="targetPickerStatus" role="status"></p>
+    <div class="target-picker-grid" id="targetPickerGrid"></div>
+  </dialog>
+
+  <dialog class="pal-dialog" id="palDialog" aria-labelledby="palDialogTitle">
+    <button class="dialog-close" id="closePalDialog" type="button" aria-label="关闭详情">关闭</button>
+    <div id="palDialogBody"></div>
+  </dialog>
+
+  <dialog class="onboarding-dialog" id="onboardingDialog" aria-labelledby="onboardingTitle">
+    <div class="onboarding-pals" aria-hidden="true">
+      <img src="images/pals/1.webp" alt=""><img src="images/pals/10.webp" alt=""><img src="images/pals/17.webp" alt="">
+    </div>
+    <p class="eyebrow">首次使用</p>
+    <h2 id="onboardingTitle">三步开始规划</h2>
+    <ol class="onboarding-steps">
+      <li><strong>选目标</strong><span>按属性、战斗定位或工作类型快速筛选。</span></li>
+      <li><strong>载入库存</strong><span>桌面程序可读取数量、性别、等级与词条。</span></li>
+      <li><strong>生成路线</strong><span>比较多条方案，按执行清单逐步完成。</span></li>
+    </ol>
+    <div class="dialog-actions"><button class="button quiet" id="dismissOnboarding" type="button">以后再看</button><button class="button primary" id="finishOnboarding" type="button">开始使用</button></div>
+  </dialog>
+
+  <dialog class="copy-fallback-dialog" id="copyFallbackDialog" aria-labelledby="copyFallbackTitle">
+    <h2 id="copyFallbackTitle">复制路线文本</h2>
+    <p>浏览器没有完成自动复制，文本已经选中；按 Ctrl+C 即可复制。</p>
+    <textarea id="copyFallbackText" readonly></textarea>
+    <div class="dialog-actions"><button class="button primary" id="closeCopyFallback" type="button">完成</button></div>
+  </dialog>
+
+  <datalist id="palList"></datalist>
+  <input type="file" id="inventoryFile" accept=".json,application/json" hidden>
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden><span id="toastMessage"></span><button id="undoAction" type="button" hidden>撤销</button></div>
+  <div class="mobile-action-bar" id="mobileActionBar"><button class="button secondary" id="mobilePickTarget" type="button">选择目标</button><button class="button primary" id="mobileSolve" type="button">生成路线</button></div>
+
+  <footer class="app-footer">
+    <span>原工具作者：z-fdg</span>
+    <span>离线、免费、非商用、粉丝向工具</span>
+  </footer>
+
+  <script src="data/paldeck.js"></script>
+  <script src="data/breeding.js"></script>
+  <script src="data/search-aliases.js"></script>
+  <script src="app.js?v=3.5.0"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+.runtime/
+build/
+dist/
+*.egg-info/
+.venv/
+.pytest_cache/
+*.sav
+oo2core_*_win64.dll
+generated/
+.analysis-*/
+*.log
+*.zip
+*.tar.gz
+screenshots-private/

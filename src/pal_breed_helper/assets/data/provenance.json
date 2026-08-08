@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 1,
+  "generatedAtUtc": "2026-07-12T00:57:33.880278Z",
+  "source": {
+    "kind": "pinned-community-cue4parse-export",
+    "repository": "https://github.com/tylercamp/palcalc",
+    "commit": "5757961d9f115a8c1733e94327cb644c2136052c",
+    "commitDate": "2026-07-11T18:00:14Z",
+    "db": {
+      "location": "https://raw.githubusercontent.com/tylercamp/palcalc/5757961d9f115a8c1733e94327cb644c2136052c/PalCalc.Model/db.json",
+      "sha256": "803d891afdb18bd00e24332844a7276bbe5c0855170ef90ef142f2f4d7698ed1",
+      "expectedSha256": "803d891afdb18bd00e24332844a7276bbe5c0855170ef90ef142f2f4d7698ed1",
+      "pinnedMatch": true,
+      "version": "v26"
+    },
+    "breeding": {
+      "location": "https://raw.githubusercontent.com/tylercamp/palcalc/5757961d9f115a8c1733e94327cb644c2136052c/PalCalc.Model/breeding.json",
+      "sha256": "b5d7470f38344db21634ec1c01b8cc11eeeb0d26e78ad65be1b85bfd55c98ae2",
+      "expectedSha256": "b5d7470f38344db21634ec1c01b8cc11eeeb0d26e78ad65be1b85bfd55c98ae2",
+      "pinnedMatch": true
+    },
+    "trustNote": "PalCalc 不是官方 API；固定 commit 的 CUE4Parse 导出用于行级结构，官方公告承担版本与 287 数量断言；争议配方另以 BreedingPower 公式和独立当前计算器交叉核对。"
+  },
+  "game": {
+    "found": true,
+    "appId": "1623730",
+    "buildId": "24088745",
+    "depotId": "1623731",
+    "depotManifestId": "1208219330428218979",
+    "lastUpdatedUtc": "2026-07-10T03:50:17Z",
+    "sizeOnDisk": 41185052542,
+    "manifestPath": "steamapps/appmanifest_1623730.acf"
+  },
+  "officialRelease": {
+    "version": "1.0.0",
+    "date": "2026-07-10",
+    "url": "https://store.steampowered.com/news/app/1623730/view/1837955055355658",
+    "gid": "1837955055355658",
+    "expectedPalCount": 287,
+    "assertion": "72 new Pals; 287 total; breeding and work suitability rebalanced"
+  },
+  "filters": [
+    {
+      "name": "unindexed-pals",
+      "rule": "PalDexNo >= 10000",
+      "excludedSourceRows": 11,
+      "categories": [
+        "special/terraria",
+        "unreleased/unknown"
+      ]
+    },
+    {
+      "name": "gumoss-special",
+      "rule": "InternalName == PlantSlime_Flower",
+      "excludedSourceRows": 1,
+      "category": "special/cosmetic-variant"
+    },
+    {
+      "name": "world-tree-hidden-boss",
+      "rule": "InternalName == WorldTreeDragon or PalDexNo == 204",
+      "excludedSourceRows": 0,
+      "category": "special/hidden-boss"
+    }
+  ],
+  "fieldStatus": {
+    "names": "pinned-current-cue4parse-export",
+    "workSuitability": "pinned-current-cue4parse-export",
+    "stats": "pinned-current-cue4parse-export",
+    "genderProbability": "pinned-current-cue4parse-export",
+    "breedingMatrix": "pinned-current-cue4parse-export-with-gender-constraints",
+    "elements": "pinned-build-snapshot",
+    "ignoreCombi": "guarded-by-pinned-resolved-breeding-matrix",
+    "descriptions": "unknown-not-exported",
+    "drops": "unknown-not-exported",
+    "eggType": "unknown-not-exported"
+  },
+  "elements": {
+    "status": "pinned-build-snapshot",
+    "knownPalCount": 287,
+    "sourceFile": "pal_elements.json",
+    "gameVersion": "1.0.0",
+    "buildId": "24088745",
+    "sha256": "12e55dfe2711ea5273930902f92d13ebd337983e533483041bbd390d562b464f",
+    "sourceName": "PalMods.gg Palpedia 1.0 game-data snapshot",
+    "sourceUrl": "https://www.palmods.gg/tools/palpedia/lamball",
+    "sourcePageSha256": "2c8d81c46b8791f0f1ce8a70823207810aa329a4fd16df061594119178ab823b",
+    "snapshotAtUtc": "2026-07-12T00:57:24Z",
+    "trustNote": "版本化第三方游戏文件快照，仅补充 PalCalc 未导出的属性字段；按 Build 24088745 的 287 条图鉴逐编号核对并固定页面哈希。"
+  },
+  "counts": {
+    "sourcePals": 299,
+    "officialPals": 287,
+    "basePals": 203,
+    "variantPals": 84,
+    "excludedSourceRows": 12,
+    "excludedPolicyRecords": 13,
+    "sourceBreedingRows": 44851,
+    "outputBreedingRows": 41329,
+    "skippedBreedingRows": 3522,
+    "maxBaseWorkSuitability": 8,
+    "workSuitabilityCap": 10
+  },
+  "icons": {
+    "policy": "不抓取第三方图；优先保留本地已有游戏图，随后读取 --pak-assets 已导出的图片，否则生成本地 SVG 占位。",
+    "assetManifestPath": null,
+    "assetTriplets": {
+      "BrownRabbit": null,
+      "WorldTreeDragon": null,
+      "BadCatgirl": null,
+      "BlueberryFairy": null,
+      "GoldenHorse": null
+    },
+    "retainedExistingCount": 283,
+    "extractedFromPakAssetsCount": 0,
+    "placeholderCount": 4,
+    "missing": [
+      {
+        "id": "143",
+        "internal": "BadCatgirl",
+        "path": "images/pals/143.svg",
+        "iconMissing": true,
+        "expectedPakAsset": "Pal/Content/Pal/Texture/PalIcon/Normal/T_BadCatgirl_icon_normal",
+        "pakAssetTripletPresent": null
+      },
+      {
+        "id": "147",
+        "internal": "BlueberryFairy",
+        "path": "images/pals/147.svg",
+        "iconMissing": true,
+        "expectedPakAsset": "Pal/Content/Pal/Texture/PalIcon/Normal/T_BlueberryFairy_icon_normal",
+        "pakAssetTripletPresent": null
+      },
+      {
+        "id": "154",
+        "internal": "GoldenHorse",
+        "path": "images/pals/154.svg",
+        "iconMissing": true,
+        "expectedPakAsset": "Pal/Content/Pal/Texture/PalIcon/Normal/T_GoldenHorse_icon_normal",
+        "pakAssetTripletPresent": null
+      },
+      {
+        "id": "165",
+        "internal": "BrownRabbit",
+        "path": "images/pals/165.svg",
+        "iconMissing": true,
+        "expectedPakAsset": "Pal/Content/Pal/Texture/PalIcon/Normal/T_BrownRabbit_icon_normal",
+        "pakAssetTripletPresent": null
+      }
+    ]
+  },
+  "pakObservations": [
+    {
+      "internal": "WorldTreeDragon",
+      "palDexNo": 204,
+      "classification": "special/hidden-boss",
+      "includedInDefaultCalculator": false,
+      "observedInLocalAssetManifest": false,
+      "iconAssetTripletPresent": null
+    }
+  ],
+  "validation": {
+    "officialPalCount": "passed",
+    "requiredNewPals": "passed",
+    "hangyuLocalization": "passed",
+    "workSuitability": "passed",
+    "breedingReferences": "passed",
+    "genderConstraints": "passed",
+    "ignoreCombi203": "passed-self-only-as-child",
+    "lamballJellroySentinel": "passed-woolipop-2820-not-ribbuny-2860",
+    "worldTree204": "passed-excluded",
+    "oldSnapshotFieldsReused": false
+  },
+  "outputs": {
+    "src/pal_breed_helper/assets/data/breeding.js": "57416d688308344435b169c41eb2042adf85bba73bf3cdfb13e1cf4bd8eca9cb",
+    "src/pal_breed_helper/assets/data/paldeck.js": "f15c99f3fa79509ac26032de7f7b0e34164ced73945302472ca851da2989d832",
+    "src/pal_breed_helper/assets/data/game_data.json": "439bfedc8e794eb08313529a7721fad222705616f6dcc6c6bca11918178d3b84",
+    "src/pal_breed_helper/data/internal_names.json": "cabe8d1214ff94627ebf613cec98e3f6140b921df300a8d50420cefe27f8f00c"
+  }
+}

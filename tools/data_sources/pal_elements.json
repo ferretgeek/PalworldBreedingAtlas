@@ -1,0 +1,963 @@
+{
+  "meta": {
+    "status": "pinned-build-snapshot",
+    "gameVersion": "1.0.0",
+    "buildId": "24088745",
+    "officialPalCount": 287,
+    "sourceName": "PalMods.gg Palpedia 1.0 game-data snapshot",
+    "sourceUrl": "https://www.palmods.gg/tools/palpedia/lamball",
+    "sourcePageSha256": "2c8d81c46b8791f0f1ce8a70823207810aa329a4fd16df061594119178ab823b",
+    "snapshotAtUtc": "2026-07-12T00:57:24Z",
+    "trustNote": "版本化第三方游戏文件快照，仅补充 PalCalc 未导出的属性字段；按 Build 24088745 的 287 条图鉴逐编号核对并固定页面哈希。"
+  },
+  "pals": {
+    "SheepBall": [
+      "Normal"
+    ],
+    "PinkCat": [
+      "Normal"
+    ],
+    "ChickenPal": [
+      "Normal"
+    ],
+    "Carbunclo": [
+      "Leaf"
+    ],
+    "BluePlatypus": [
+      "Water"
+    ],
+    "BluePlatypus_Fire": [
+      "Water",
+      "Fire"
+    ],
+    "CuteFox": [
+      "Normal"
+    ],
+    "FlyingManta": [
+      "Water"
+    ],
+    "FlyingManta_Thunder": [
+      "Water",
+      "Electricity"
+    ],
+    "WoolFox": [
+      "Normal"
+    ],
+    "KendoFrog": [
+      "Water"
+    ],
+    "KendoFrog_Dark": [
+      "Water",
+      "Dark"
+    ],
+    "LeafMomonga": [
+      "Leaf",
+      "Normal"
+    ],
+    "Ganesha": [
+      "Water"
+    ],
+    "PlantSlime": [
+      "Leaf",
+      "Earth"
+    ],
+    "SamuraiDog": [
+      "Earth"
+    ],
+    "CloverFairy": [
+      "Leaf",
+      "Normal"
+    ],
+    "Hedgehog": [
+      "Electricity"
+    ],
+    "Hedgehog_Ice": [
+      "Ice"
+    ],
+    "NegativeKoala": [
+      "Dark"
+    ],
+    "Penguin": [
+      "Water",
+      "Ice"
+    ],
+    "Penguin_Electric": [
+      "Water",
+      "Electricity"
+    ],
+    "CaptainPenguin": [
+      "Water",
+      "Ice"
+    ],
+    "CaptainPenguin_Black": [
+      "Water",
+      "Electricity"
+    ],
+    "WizardOwl": [
+      "Dark"
+    ],
+    "Alpaca": [
+      "Normal"
+    ],
+    "KingAlpaca": [
+      "Normal"
+    ],
+    "KingAlpaca_Ice": [
+      "Ice"
+    ],
+    "DreamDemon": [
+      "Dark"
+    ],
+    "Monkey": [
+      "Leaf"
+    ],
+    "Monkey_Fire": [
+      "Fire"
+    ],
+    "NightFox": [
+      "Dark"
+    ],
+    "LavaGirl": [
+      "Fire"
+    ],
+    "FlameBambi": [
+      "Fire"
+    ],
+    "Bastet": [
+      "Dark"
+    ],
+    "Bastet_Ice": [
+      "Ice"
+    ],
+    "Boar": [
+      "Earth"
+    ],
+    "Kitsunebi": [
+      "Fire"
+    ],
+    "Kitsunebi_Ice": [
+      "Ice"
+    ],
+    "NegativeOctopus": [
+      "Dark",
+      "Water"
+    ],
+    "NegativeOctopus_Neutral": [
+      "Normal",
+      "Water"
+    ],
+    "CuteMole": [
+      "Earth"
+    ],
+    "Deer": [
+      "Normal"
+    ],
+    "Deer_Ground": [
+      "Earth"
+    ],
+    "Garm": [
+      "Normal"
+    ],
+    "BerryGoat": [
+      "Leaf"
+    ],
+    "BerryGoat_Dark": [
+      "Dark"
+    ],
+    "MopBaby": [
+      "Ice"
+    ],
+    "MopKing": [
+      "Ice"
+    ],
+    "TentacleTurtle": [
+      "Water"
+    ],
+    "TentacleTurtle_Ground": [
+      "Water",
+      "Earth"
+    ],
+    "WindChimes": [
+      "Earth"
+    ],
+    "WindChimes_Ice": [
+      "Ice"
+    ],
+    "SweetsSheep": [
+      "Normal"
+    ],
+    "SweetsSheep_Ground": [
+      "Earth"
+    ],
+    "CowPal": [
+      "Normal"
+    ],
+    "BlueDragon": [
+      "Water",
+      "Dragon"
+    ],
+    "BlueDragon_Ice": [
+      "Ice",
+      "Dragon"
+    ],
+    "ElecCat": [
+      "Electricity"
+    ],
+    "Kelpie": [
+      "Water"
+    ],
+    "Kelpie_Fire": [
+      "Fire"
+    ],
+    "PinkRabbit": [
+      "Normal"
+    ],
+    "PinkRabbit_Grass": [
+      "Leaf"
+    ],
+    "JellyfishFairy": [
+      "Water"
+    ],
+    "JellyfishGhost": [
+      "Water",
+      "Dark"
+    ],
+    "ClioneTwins": [
+      "Water"
+    ],
+    "OctopusGirl": [
+      "Water",
+      "Dark"
+    ],
+    "OctopusGirl_Neutral": [
+      "Water",
+      "Normal"
+    ],
+    "Eagle": [
+      "Normal"
+    ],
+    "GhostBlackCat": [
+      "Dark"
+    ],
+    "HawkBird": [
+      "Normal"
+    ],
+    "CatBat": [
+      "Dark"
+    ],
+    "ColorfulBird": [
+      "Normal"
+    ],
+    "Kirin": [
+      "Electricity"
+    ],
+    "Kirin_Ice": [
+      "Ice"
+    ],
+    "SharkKid": [
+      "Water"
+    ],
+    "SharkKid_Fire": [
+      "Fire"
+    ],
+    "Werewolf": [
+      "Dark"
+    ],
+    "Werewolf_Ice": [
+      "Ice"
+    ],
+    "DarkCrow": [
+      "Dark"
+    ],
+    "FlameBuffalo": [
+      "Fire"
+    ],
+    "FluffyBird": [
+      "Ice"
+    ],
+    "LittleBriarRose": [
+      "Leaf"
+    ],
+    "CuteButterfly": [
+      "Leaf"
+    ],
+    "ElecPomeranian": [
+      "Electricity"
+    ],
+    "FairyDragon": [
+      "Dragon"
+    ],
+    "FairyDragon_Water": [
+      "Dragon",
+      "Water"
+    ],
+    "BirdDragon": [
+      "Fire",
+      "Dark"
+    ],
+    "BirdDragon_Ice": [
+      "Ice",
+      "Dark"
+    ],
+    "CatVampire": [
+      "Dark"
+    ],
+    "VioletFairy": [
+      "Leaf"
+    ],
+    "SoldierBee": [
+      "Leaf"
+    ],
+    "QueenBee": [
+      "Leaf"
+    ],
+    "PinkLizard": [
+      "Dark"
+    ],
+    "NaughtyCat": [
+      "Normal"
+    ],
+    "PurpleSpider": [
+      "Dark"
+    ],
+    "IceSeal": [
+      "Ice",
+      "Water"
+    ],
+    "IceSeal_Ground": [
+      "Ice",
+      "Earth"
+    ],
+    "LizardMan": [
+      "Dark"
+    ],
+    "LizardMan_Fire": [
+      "Fire"
+    ],
+    "Gorilla": [
+      "Normal"
+    ],
+    "Gorilla_Ground": [
+      "Earth"
+    ],
+    "Serpent": [
+      "Water"
+    ],
+    "Serpent_Ground": [
+      "Earth"
+    ],
+    "RobinHood": [
+      "Leaf"
+    ],
+    "RobinHood_Ground": [
+      "Leaf",
+      "Earth"
+    ],
+    "FlowerRabbit": [
+      "Leaf"
+    ],
+    "FoxMage": [
+      "Fire"
+    ],
+    "FoxMage_Dark": [
+      "Fire",
+      "Dark"
+    ],
+    "CatMage": [
+      "Dark"
+    ],
+    "CatMage_Fire": [
+      "Dark",
+      "Fire"
+    ],
+    "HadesBird": [
+      "Dark"
+    ],
+    "HadesBird_Electric": [
+      "Dark",
+      "Electricity"
+    ],
+    "GrassMinotaur": [
+      "Leaf"
+    ],
+    "GrassMinotaur_Ice": [
+      "Ice"
+    ],
+    "Mutant": [
+      "Normal"
+    ],
+    "FengyunDeeper": [
+      "Normal"
+    ],
+    "FengyunDeeper_Electric": [
+      "Electricity"
+    ],
+    "FlowerDinosaur": [
+      "Leaf",
+      "Dragon"
+    ],
+    "FlowerDinosaur_Electric": [
+      "Electricity",
+      "Dragon"
+    ],
+    "Ronin": [
+      "Fire"
+    ],
+    "Ronin_Dark": [
+      "Fire",
+      "Dark"
+    ],
+    "IceCrocodile": [
+      "Ice",
+      "Water"
+    ],
+    "GrassMammoth": [
+      "Leaf",
+      "Earth"
+    ],
+    "GrassMammoth_Ice": [
+      "Ice",
+      "Earth"
+    ],
+    "StuffedShark": [
+      "Water"
+    ],
+    "StuffedShark_Fire": [
+      "Water",
+      "Fire"
+    ],
+    "FlowerDoll": [
+      "Leaf"
+    ],
+    "FlowerDoll_Fire": [
+      "Leaf",
+      "Fire"
+    ],
+    "PandaGirl": [
+      "Leaf"
+    ],
+    "Baphomet": [
+      "Fire",
+      "Dark"
+    ],
+    "Baphomet_Dark": [
+      "Dark"
+    ],
+    "RaijinDaughter": [
+      "Electricity"
+    ],
+    "RaijinDaughter_Water": [
+      "Dark",
+      "Electricity"
+    ],
+    "FireKirin": [
+      "Fire"
+    ],
+    "FireKirin_Dark": [
+      "Fire",
+      "Dark"
+    ],
+    "LazyDragon": [
+      "Dragon",
+      "Water"
+    ],
+    "LazyDragon_Electric": [
+      "Dragon",
+      "Electricity"
+    ],
+    "IceFox": [
+      "Ice"
+    ],
+    "ThunderBird": [
+      "Electricity"
+    ],
+    "ThunderBird_Ice": [
+      "Ice"
+    ],
+    "GhostAnglerfish": [
+      "Dark",
+      "Water"
+    ],
+    "GhostAnglerfish_Fire": [
+      "Fire",
+      "Water"
+    ],
+    "ThunderDog": [
+      "Electricity"
+    ],
+    "ThunderDog_Ice": [
+      "Ice"
+    ],
+    "DarkScorpion": [
+      "Dark",
+      "Earth"
+    ],
+    "DarkScorpion_Ground": [
+      "Earth"
+    ],
+    "CactusDoll": [
+      "Leaf"
+    ],
+    "CactusDoll_Dark": [
+      "Dark",
+      "Leaf"
+    ],
+    "IceDeer": [
+      "Ice"
+    ],
+    "GrassPanda": [
+      "Leaf"
+    ],
+    "GrassPanda_Electric": [
+      "Electricity"
+    ],
+    "WeaselDragon": [
+      "Ice",
+      "Dragon"
+    ],
+    "WeaselDragon_Fire": [
+      "Fire",
+      "Dragon"
+    ],
+    "RedArmorBird": [
+      "Fire"
+    ],
+    "VolcanoDragon": [
+      "Fire",
+      "Earth"
+    ],
+    "VolcanoDragon_Ice": [
+      "Ice",
+      "Earth"
+    ],
+    "TropicalOstrich": [
+      "Leaf"
+    ],
+    "DrillGame": [
+      "Earth"
+    ],
+    "SakuraSaurus": [
+      "Leaf"
+    ],
+    "SakuraSaurus_Water": [
+      "Leaf",
+      "Water"
+    ],
+    "LazyCatfish": [
+      "Earth",
+      "Water"
+    ],
+    "LazyCatfish_Gold": [
+      "Earth",
+      "Water"
+    ],
+    "Plesiosaur": [
+      "Leaf",
+      "Earth"
+    ],
+    "AmaterasuWolf": [
+      "Fire"
+    ],
+    "AmaterasuWolf_Dark": [
+      "Dark"
+    ],
+    "Manticore": [
+      "Fire"
+    ],
+    "Manticore_Dark": [
+      "Fire",
+      "Dark"
+    ],
+    "HerculesBeetle": [
+      "Earth",
+      "Leaf"
+    ],
+    "HerculesBeetle_Ground": [
+      "Earth"
+    ],
+    "SnowPeafowl": [
+      "Ice"
+    ],
+    "DarkFlameFox": [
+      "Dark",
+      "Fire"
+    ],
+    "WhiteMoth": [
+      "Ice"
+    ],
+    "WhiteMoth_Neutral": [
+      "Normal"
+    ],
+    "GhostBeast": [
+      "Dark"
+    ],
+    "MushroomDragon": [
+      "Leaf"
+    ],
+    "MushroomDragon_Dark": [
+      "Leaf",
+      "Dark"
+    ],
+    "IceWitch": [
+      "Ice"
+    ],
+    "MummyPal": [
+      "Dark",
+      "Earth"
+    ],
+    "Umihebi": [
+      "Dragon",
+      "Water"
+    ],
+    "Umihebi_Fire": [
+      "Dragon",
+      "Fire"
+    ],
+    "Suzaku": [
+      "Fire"
+    ],
+    "Suzaku_Water": [
+      "Water"
+    ],
+    "FeatherOstrich": [
+      "Earth"
+    ],
+    "SkyDragon": [
+      "Dragon"
+    ],
+    "SkyDragon_Grass": [
+      "Dragon",
+      "Leaf"
+    ],
+    "LeafPrincess": [
+      "Leaf"
+    ],
+    "SmallArmadillo": [
+      "Earth"
+    ],
+    "GuardianDog": [
+      "Normal"
+    ],
+    "SwordCutlassfish": [
+      "Water"
+    ],
+    "SwordCutlassfish_Fire": [
+      "Water",
+      "Fire"
+    ],
+    "VolcanicMonster": [
+      "Fire",
+      "Earth"
+    ],
+    "VolcanicMonster_Ice": [
+      "Ice",
+      "Earth"
+    ],
+    "NightBlueHorse": [
+      "Dark"
+    ],
+    "NightBlueHorse_Neutral": [
+      "Normal"
+    ],
+    "RockBeast": [
+      "Earth"
+    ],
+    "RockBeast_Ice": [
+      "Ice"
+    ],
+    "WhiteTiger": [
+      "Ice"
+    ],
+    "WhiteTiger_Ground": [
+      "Earth"
+    ],
+    "SmallYeti": [
+      "Ice"
+    ],
+    "Yeti": [
+      "Ice"
+    ],
+    "Yeti_Grass": [
+      "Leaf"
+    ],
+    "CandleGhost": [
+      "Dark",
+      "Fire"
+    ],
+    "VenusFlytrap": [
+      "Leaf"
+    ],
+    "KingBahamut": [
+      "Fire"
+    ],
+    "KingBahamut_Dragon": [
+      "Dragon",
+      "Fire"
+    ],
+    "GrassGolem": [
+      "Earth",
+      "Leaf"
+    ],
+    "GrassGolem_Dark": [
+      "Earth",
+      "Dark"
+    ],
+    "Anubis": [
+      "Earth"
+    ],
+    "Sekhmet": [
+      "Earth"
+    ],
+    "ScorpionMan": [
+      "Dark",
+      "Earth"
+    ],
+    "ScorpionMan_Electric": [
+      "Electricity",
+      "Earth"
+    ],
+    "CubeTurtle": [
+      "Earth"
+    ],
+    "CubeTurtle_Neutral": [
+      "Normal"
+    ],
+    "BadCatgirl": [
+      "Dark"
+    ],
+    "MimicDog": [
+      "Normal"
+    ],
+    "DarkAlien": [
+      "Dark"
+    ],
+    "WhiteAlienDragon": [
+      "Dragon"
+    ],
+    "BlueberryFairy": [
+      "Leaf",
+      "Dark"
+    ],
+    "GhostRabbit": [
+      "Dark"
+    ],
+    "GhostRabbit_Grass": [
+      "Leaf"
+    ],
+    "BlackPuppy": [
+      "Dark"
+    ],
+    "BlackPuppy_Ice": [
+      "Dark",
+      "Ice"
+    ],
+    "MysteryMask": [
+      "Dark"
+    ],
+    "IceNarwhal": [
+      "Ice",
+      "Water"
+    ],
+    "IceNarwhal_Fire": [
+      "Ice",
+      "Fire"
+    ],
+    "GrassRabbitMan": [
+      "Leaf"
+    ],
+    "GrimGirl": [
+      "Dark"
+    ],
+    "GoldenHorse": [
+      "Earth"
+    ],
+    "SifuDog": [
+      "Normal"
+    ],
+    "SumoDog": [
+      "Earth"
+    ],
+    "WhiteDeer": [
+      "Normal"
+    ],
+    "WhiteDeer_Dark": [
+      "Dark"
+    ],
+    "BlackMetalDragon": [
+      "Dragon",
+      "Dark"
+    ],
+    "WingGolem": [
+      "Earth"
+    ],
+    "WingGolem_Fire": [
+      "Fire"
+    ],
+    "WhiteShieldDragon": [
+      "Dragon"
+    ],
+    "BlueThunderHorse": [
+      "Electricity"
+    ],
+    "LongCat": [
+      "Normal"
+    ],
+    "ElecSnail": [
+      "Electricity"
+    ],
+    "ElecSnail_Ground": [
+      "Electricity",
+      "Earth"
+    ],
+    "DandelionGirl": [
+      "Leaf"
+    ],
+    "BrownRabbit": [
+      "Earth"
+    ],
+    "HoodGhost": [
+      "Dark"
+    ],
+    "ElecLizard": [
+      "Electricity"
+    ],
+    "OniGhostGirl": [
+      "Dark"
+    ],
+    "KingSunfish": [
+      "Water"
+    ],
+    "KingSunfish_Thunder": [
+      "Water",
+      "Electricity"
+    ],
+    "SleeveRabbit": [
+      "Normal"
+    ],
+    "GhostDragon": [
+      "Dragon",
+      "Dark"
+    ],
+    "GhostDragon_Fire": [
+      "Dragon",
+      "Fire"
+    ],
+    "ThunderFluffyBird": [
+      "Electricity"
+    ],
+    "RedFlowerBird": [
+      "Leaf"
+    ],
+    "FoxExorcist": [
+      "Fire"
+    ],
+    "LotusDragon": [
+      "Leaf",
+      "Water"
+    ],
+    "ClownRabbit": [
+      "Fire"
+    ],
+    "ThiefBird": [
+      "Dark"
+    ],
+    "SnakeGirl": [
+      "Dark"
+    ],
+    "MushroomLady": [
+      "Leaf"
+    ],
+    "LanternButler": [
+      "Dark",
+      "Fire"
+    ],
+    "MoonChild": [
+      "Dark"
+    ],
+    "MonochromeQueen": [
+      "Dark",
+      "Normal"
+    ],
+    "KabukiMan": [
+      "Fire"
+    ],
+    "DomeArmorDragon": [
+      "Dragon",
+      "Earth"
+    ],
+    "ElecPanda": [
+      "Electricity"
+    ],
+    "LilyQueen": [
+      "Leaf"
+    ],
+    "LilyQueen_Dark": [
+      "Dark"
+    ],
+    "ThunderDragonMan": [
+      "Dragon",
+      "Electricity"
+    ],
+    "Horus": [
+      "Fire"
+    ],
+    "Horus_Water": [
+      "Water"
+    ],
+    "BlackGriffon": [
+      "Dark"
+    ],
+    "MoonQueen": [
+      "Dark",
+      "Normal"
+    ],
+    "SnowTigerBeastman": [
+      "Ice"
+    ],
+    "BlueSkyDragon": [
+      "Dragon",
+      "Water"
+    ],
+    "Mothman": [
+      "Leaf"
+    ],
+    "FlowerPrince": [
+      "Leaf",
+      "Dark"
+    ],
+    "NightLady": [
+      "Dark"
+    ],
+    "NightLady_Dark": [
+      "Dark"
+    ],
+    "DarkMechaDragon": [
+      "Dark",
+      "Dragon"
+    ],
+    "LegendDeer": [
+      "Normal"
+    ],
+    "SaintCentaur": [
+      "Normal"
+    ],
+    "BlackCentaur": [
+      "Dark"
+    ],
+    "IceHorse": [
+      "Ice"
+    ],
+    "IceHorse_Dark": [
+      "Dark"
+    ],
+    "PoseidonOrca": [
+      "Water"
+    ],
+    "JetDragon": [
+      "Dragon"
+    ],
+    "KingWhale": [
+      "Water"
+    ]
+  }
+}
