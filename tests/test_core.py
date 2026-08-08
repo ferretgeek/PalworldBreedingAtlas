@@ -134,8 +134,10 @@ class ParserTests(unittest.TestCase):
             level.touch()
             global_storage = account / "GlobalPalStorage.sav"
             global_storage.touch()
+            result = save_parser.find_global_storage(level)
+            self.assertIsNotNone(result)
             self.assertEqual(
-                str(global_storage), save_parser.find_global_storage(level)
+                save_parser.path_key(global_storage), save_parser.path_key(result)
             )
 
     def test_generated_html_contains_owned_keys(self) -> None:
