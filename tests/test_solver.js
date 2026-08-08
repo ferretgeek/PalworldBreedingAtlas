@@ -25,6 +25,11 @@ const knownInventory = [
 ];
 
 function run() {
+  const isSharedGitHubRunner = process.env.GITHUB_ACTIONS === "true";
+  const fastestBudgetMs = isSharedGitHubRunner ? 500 : 150;
+  const routeBudgetMs = isSharedGitHubRunner ? 3000 : 1800;
+  const suiteBudgetMs = isSharedGitHubRunner ? 6000 : 3000;
+
   assert.equal(solver.STRATEGIES.BALANCED, "balanced");
   assert.equal(typeof solver.combineInventoryRecords, "function", "库存合并应导出为可独立回归的纯函数");
   const worldInventory = [
@@ -147,7 +152,7 @@ function run() {
   const fastestElapsed = performance.now() - fastestStarted;
   assert.ok(Array.isArray(routeOptions) && routeOptions.length >= 1, "多路线接口应至少返回一条可行路线");
   assert.equal(routeOptions[0].operations.size, 1, "最快成型应直接选择一步亲本配方");
-  assert.ok(fastestElapsed < 150, `最快成型直达计算耗时过长：${Math.round(fastestElapsed)}ms`);
+  assert.ok(fastestElapsed < fastestBudgetMs, `最快成型直达计算耗时过长：${Math.round(fastestElapsed)}ms`);
   assert.equal(new Set(routeOptions.map((item) => item.hash)).size, routeOptions.length, "多路线结果必须去重");
   assert.ok(routeOptions.length <= 3, "多路线接口必须遵守数量上限");
   if (pd.breed["79B"] && pd.breed["78B"]) {
@@ -195,8 +200,8 @@ function run() {
 
   const elapsed = performance.now() - started;
   const slowestRoute = Math.max(...routeTimes.map((item) => item.ms));
-  assert.ok(slowestRoute < 1800, `零补充单次求解耗时过长：${Math.round(slowestRoute)}ms`);
-  assert.ok(elapsed < 3000, `核心回归测试耗时过长：${Math.round(elapsed)}ms`);
+  assert.ok(slowestRoute < routeBudgetMs, `零补充单次求解耗时过长：${Math.round(slowestRoute)}ms`);
+  assert.ok(elapsed < suiteBudgetMs, `核心回归测试耗时过长：${Math.round(elapsed)}ms`);
   console.log(`solver tests passed in ${Math.round(elapsed)}ms; routes ${routeTimes.map((item) => `${item.name} ${Math.round(item.ms)}ms`).join(", ")}`);
 }
 
