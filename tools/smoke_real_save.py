@@ -80,7 +80,7 @@ def main() -> int:
             for item in result.get("crossWorldGeneUnknownData", [])
         ),
         "globalStorageStatus": result.get("globalStorageStatus", "missing"),
-        "globalStorageError": result.get("globalStorageError", ""),
+        "globalStorageErrorPresent": bool(result.get("globalStorageError")),
         "dataInfo": result.get("dataInfo", {}),
     }
 
@@ -115,11 +115,7 @@ def main() -> int:
             )
         return 1
     if summary["globalStorageStatus"] == "error":
-        print(
-            "失败：当前世界可读，但跨界基因读取失败："
-            f"{summary['globalStorageError']}",
-            file=sys.stderr,
-        )
+        print("失败：当前世界可读，但跨界基因读取失败。", file=sys.stderr)
         return 1
     return 0
 
