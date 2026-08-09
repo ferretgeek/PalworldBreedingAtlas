@@ -81,7 +81,6 @@ def main() -> int:
         ),
         "globalStorageStatus": result.get("globalStorageStatus", "missing"),
         "globalStorageErrorPresent": bool(result.get("globalStorageError")),
-        "dataInfo": result.get("dataInfo", {}),
     }
 
     if args.json:
