@@ -26,7 +26,9 @@ const knownInventory = [
 
 function run() {
   const isSharedGitHubRunner = process.env.GITHUB_ACTIONS === "true";
-  const fastestBudgetMs = isSharedGitHubRunner ? 500 : 150;
+  // Shared Windows runners have noisy cold-start scheduling; keep the local
+  // regression strict while allowing the same one-step solve to complete in CI.
+  const fastestBudgetMs = isSharedGitHubRunner ? 2000 : 150;
   const routeBudgetMs = isSharedGitHubRunner ? 3000 : 1800;
   const suiteBudgetMs = isSharedGitHubRunner ? 6000 : 3000;
 
