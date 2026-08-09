@@ -8,14 +8,14 @@
   color-scheme: dark;
 
   /* 基底 */
-  --bg: #060d18;
-  --bg-deep: #030710;
-  --surface: #0e192b;
-  --surface-2: #122136;
-  --surface-3: #182b45;
-  --surface-glass: rgb(14 25 43 / 78%);
-  --panel-deep: #091322;
-  --input-bg: #0a1524;
+  --bg: #17191d;
+  --bg-deep: #111317;
+  --surface: #1d222a;
+  --surface-2: #222b37;
+  --surface-3: #29384a;
+  --surface-glass: rgb(29 34 42 / 82%);
+  --panel-deep: #181d24;
+  --input-bg: #1a2028;
 
   /* 线条 */
   --line: #243850;
