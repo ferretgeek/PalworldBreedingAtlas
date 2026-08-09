@@ -225,7 +225,15 @@ class WebAssetTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             target = Path(directory) / "result.html"
             save_parser.build_injected_html(["1"], target)
-            allowed = {".css", ".js", ".json", ".svg", ".ico", ".webmanifest"}
+            allowed = {
+                ".css",
+                ".js",
+                ".json",
+                ".svg",
+                ".ico",
+                ".png",
+                ".webmanifest",
+            }
             expected = {
                 item.name
                 for item in save_parser.asset_dir().iterdir()
@@ -235,6 +243,34 @@ class WebAssetTests(unittest.TestCase):
             self.assertEqual(
                 set(), {name for name in expected if not (target.parent / name).is_file()}
             )
+
+    def test_brand_assets_and_four_theme_contract(self) -> None:
+        assets = save_parser.asset_dir()
+        for name in (
+            "favicon.svg",
+            "palicon.ico",
+            "apple-touch-icon.png",
+            "icon-192.png",
+            "icon-512.png",
+            "site.webmanifest",
+        ):
+            self.assertGreater((assets / name).stat().st_size, 0, name)
+
+        html = (assets / "index.html").read_text(encoding="utf-8")
+        script = (assets / "app.js").read_text(encoding="utf-8")
+        styles = (assets / "styles.css").read_text(encoding="utf-8")
+        for theme in ("night", "light", "prism", "grove"):
+            self.assertIn(f'data-theme-option="{theme}"', html)
+            self.assertIn(f'"{theme}"', script)
+        self.assertIn(':root[data-theme="grove"]', styles)
+        self.assertIn('rel="manifest" href="site.webmanifest"', html)
+
+        manifest = json.loads((assets / "site.webmanifest").read_text(encoding="utf-8"))
+        self.assertEqual("./", manifest["start_url"])
+        self.assertEqual(
+            {"icon-192.png", "icon-512.png"},
+            {item["src"] for item in manifest["icons"]},
+        )
 
     def test_web_asset_fingerprint_changes_with_content(self) -> None:
         with tempfile.TemporaryDirectory() as directory:

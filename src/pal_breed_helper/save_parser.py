@@ -1611,7 +1611,15 @@ def write_json(result: dict, path: str | os.PathLike[str] | None = None) -> str:
 
 def _web_asset_files(source: Path) -> list[Path]:
     top_level_manifest = {"styles.css", "solver.js", "app.js", "palicon.ico"}
-    allowed_extensions = {".css", ".js", ".json", ".svg", ".ico", ".webmanifest"}
+    allowed_extensions = {
+        ".css",
+        ".js",
+        ".json",
+        ".svg",
+        ".ico",
+        ".png",
+        ".webmanifest",
+    }
     top_level_manifest.update(
         item.name
         for item in source.iterdir()

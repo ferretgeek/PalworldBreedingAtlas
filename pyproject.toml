@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "palworld-breeding-atlas"
-version = "3.5.0"
+version = "3.5.1"
 description = "Local-first Palworld breeding atlas and read-only save companion"
 readme = "README.md"
 requires-python = ">=3.10"

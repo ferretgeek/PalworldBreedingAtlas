@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="帕鲁配种助手">
+  <rect width="64" height="64" rx="15" fill="#17191d"/>
+  <path d="M18 18c7-7 21-7 28 0 7 8 6 23-2 30-7 6-17 6-24 0-8-7-9-22-2-30Z" fill="#f7f2e7" stroke="#f2b950" stroke-width="3"/>
+  <path d="M22 28c5-5 15-5 20 0M24 39c5 4 11 4 16 0" fill="none" stroke="#287a58" stroke-width="4" stroke-linecap="round"/>
+  <circle cx="25" cy="34" r="2.5" fill="#72529c"/>
+  <circle cx="39" cy="34" r="2.5" fill="#b85f42"/>
+</svg>

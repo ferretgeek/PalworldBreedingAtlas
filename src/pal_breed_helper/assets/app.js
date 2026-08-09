@@ -477,7 +477,7 @@
   const PLANNER_CACHE_KEY = "pal-breed-helper.planner-cache.v1";
   const REVERSE_CACHE_KEY = "pal-breed-helper.reverse-cache.v1";
   const THEME_KEY = "pal-breed-helper.theme";
-  const THEMES = new Set(["night", "light", "prism"]);
+  const THEMES = new Set(["night", "light", "prism", "grove"]);
   const EXPECTED_PAL_COUNT = 287;
   const TYPE_LABELS = {
     normal: "普通",
@@ -859,7 +859,7 @@
       // 主题仍会在本次页面中生效。
     }
     if (announce) {
-      const labels = { night: "幻夜深色", light: "云海浅色", prism: "幻彩浅色" };
+      const labels = { night: "幻夜深色", light: "云海浅色", prism: "幻彩浅色", grove: "森语浅色" };
       showToast(`已切换为${labels[next]}`);
     }
   }

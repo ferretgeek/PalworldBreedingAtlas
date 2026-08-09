@@ -32,7 +32,7 @@
 - **287 条图鉴 / 287-entry Paldeck** — 中文、拼音、编号、属性、工作适性、战斗定位与获取方式筛选。
 - **配方工具 / Recipe tools** — 亲本查子代、目标查全部配方，保留特殊组合的性别限制。
 - **只读存档 / Read-only saves** — 发现 Steam 多库与专用服务器存档，区分本世界库存、跨界基因与未知单位。
-- **细致体验 / Polished experience** — 三套主题、移动端固定操作、键盘、减少动态效果、缓存恢复、空错忙状态。
+- **细致体验 / Polished experience** — 深灰暗色与三套完整浅色主题、移动端固定操作、键盘、减少动态效果、缓存恢复、空错忙状态。
 
 ## 直接看图鉴 / Browse without a save
 
@@ -72,6 +72,10 @@ Linux 的新版 Oodle 存档需要兼容的 `palooz` 后端。部署时建议使
 
 New-format Oodle saves on Linux require a compatible `palooz` backend. Use a restricted systemd `oneshot`; do not poll continuously or grant the web process write access to saves.
 
+生成页可能含库存信息。远程访问必须放在 HTTPS 与认证反向代理之后；完整安装、升级、备份、恢复、健康检查和卸载步骤见 [`docs/OPERATIONS.md`](./docs/OPERATIONS.md)。
+
+Generated pages can contain inventory data. Put remote access behind HTTPS and an authenticated reverse proxy. See [`docs/OPERATIONS.md`](./docs/OPERATIONS.md) for installation, upgrades, backup, restore, health checks, and removal.
+
 ## 验证 / Verification
 
 ```powershell
@@ -81,6 +85,15 @@ New-format Oodle saves on Linux require a compatible `palooz` backend. Use a res
 门禁包含 Python 编译与测试、287 条图鉴和配种数据契约，以及可由 Node.js 独立执行的求解器回归。
 
 The gate covers Python compilation and tests, the 287-entry data contract, and solver regression runnable independently with Node.js.
+
+## 文档 / Documentation
+
+- [运维与双部署 / Operations and dual deployment](./docs/OPERATIONS.md)
+- [开发维护手册 / Development handbook](./docs/开发维护手册.md)
+- [数据来源与更新 / Data provenance and updates](./docs/数据来源与更新.md)
+- [安全策略 / Security policy](./SECURITY.md)
+- [贡献指南 / Contributing](./CONTRIBUTING.md)
+- [变更记录 / Changelog](./CHANGELOG.md)
 
 ## 数据与许可 / Data and licensing
 

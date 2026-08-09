@@ -5,16 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="color-scheme" content="dark light">
   <title>帕鲁配种助手</title>
-  <link rel="icon" href="palicon.ico">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="alternate icon" href="palicon.ico">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
   <script>
     (function () {
       try {
         var theme = localStorage.getItem("pal-breed-helper.theme");
-        if (["night", "light", "prism"].includes(theme)) document.documentElement.dataset.theme = theme;
+        if (["night", "light", "prism", "grove"].includes(theme)) document.documentElement.dataset.theme = theme;
       } catch (_) {}
     })();
   </script>
-  <link rel="stylesheet" href="styles.css?v=3.5.0">
+  <link rel="stylesheet" href="styles.css?v=3.5.1">
 </head>
 <body>
   <a class="skip-link" href="#mainContent">跳到主要内容</a>
@@ -67,6 +70,9 @@
           </button>
           <button class="theme-option" type="button" data-theme-option="prism" aria-pressed="false" title="幻彩浅色">
             <span class="theme-swatch prism-swatch" aria-hidden="true"></span><span class="theme-name">幻彩</span>
+          </button>
+          <button class="theme-option" type="button" data-theme-option="grove" aria-pressed="false" title="森语浅色">
+            <span class="theme-swatch grove-swatch" aria-hidden="true"></span><span class="theme-name">森语</span>
           </button>
         </div>
       </div>
@@ -462,6 +468,6 @@
   <script src="data/paldeck.js"></script>
   <script src="data/breeding.js"></script>
   <script src="data/search-aliases.js"></script>
-  <script src="app.js?v=3.5.0"></script>
+  <script src="app.js?v=3.5.1"></script>
 </body>
 </html>

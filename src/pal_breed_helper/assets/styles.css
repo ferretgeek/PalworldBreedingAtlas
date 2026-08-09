@@ -1,7 +1,7 @@
 /* ==========================================================================
    帕鲁配种助手 · 「幻夜绮境」视觉系统
    深邃午夜极光 + 奢华鎏金 + 真实帕鲁装饰
-   三主题：幻夜（旗舰深色）/ 云海（浅色）/ 幻彩（浅色）
+   四主题：幻夜（旗舰深色）/ 云海（浅色）/ 幻彩（浅色）/ 森语（浅色）
    ========================================================================== */
 
 :root {
@@ -161,6 +161,46 @@
   --glow-cyan: 0 0 22px rgb(53 120 189 / 18%);
 }
 
+:root[data-theme="grove"] {
+  color-scheme: light;
+  --bg: #eef6ef;
+  --bg-deep: #dcebdd;
+  --surface: #fffefa;
+  --surface-2: #f4faf4;
+  --surface-3: #e5f2e7;
+  --surface-glass: rgb(255 254 250 / 84%);
+  --panel-deep: #f7fbf5;
+  --input-bg: #fffefa;
+  --line: #c5d8c7;
+  --line-strong: #96b59d;
+  --text: #193428;
+  --muted: #577264;
+  --muted-strong: #365345;
+  --accent: #287a58;
+  --accent-strong: #1d5f43;
+  --accent-soft: rgb(40 122 88 / 11%);
+  --accent-ink: #ffffff;
+  --gold: #b85f42;
+  --gold-strong: #8f442f;
+  --gold-soft: rgb(184 95 66 / 13%);
+  --gold-ink: #ffffff;
+  --warm: #b85f42;
+  --warm-soft: rgb(184 95 66 / 13%);
+  --positive: #1c724f;
+  --positive-soft: rgb(28 114 79 / 11%);
+  --danger: #a63d47;
+  --danger-soft: rgb(166 61 71 / 10%);
+  --focus: #9a4e36;
+  --violet: #72529c;
+  --violet-soft: rgb(114 82 156 / 11%);
+  --nav-bg: rgb(245 250 243 / 91%);
+  --topbar-bg: rgb(255 254 250 / 88%);
+  --shadow: 0 26px 68px rgb(53 91 65 / 17%);
+  --shadow-soft: 0 12px 32px rgb(53 91 65 / 11%);
+  --shadow-gold: 0 10px 28px rgb(184 95 66 / 19%);
+  --glow-cyan: 0 0 22px rgb(40 122 88 / 18%);
+}
+
 /* ==========================================================================
    基座
    ========================================================================== */
@@ -205,6 +245,14 @@ body {
     radial-gradient(900px 520px at 55% -10%, rgb(226 166 60 / 13%), transparent 56%),
     radial-gradient(880px 560px at 96% 0%, rgb(116 87 214 / 13%), transparent 56%),
     linear-gradient(180deg, #fdfdff 0%, var(--bg) 48%, var(--bg-deep) 100%);
+}
+
+:root[data-theme="grove"] body {
+  background:
+    radial-gradient(1050px 580px at 8% -7%, rgb(40 122 88 / 13%), transparent 59%),
+    radial-gradient(900px 520px at 58% -10%, rgb(184 95 66 / 12%), transparent 57%),
+    radial-gradient(880px 600px at 98% 2%, rgb(114 82 156 / 10%), transparent 58%),
+    linear-gradient(180deg, #fffefa 0%, var(--bg) 50%, var(--bg-deep) 100%);
 }
 
 ::selection {
@@ -450,7 +498,8 @@ p {
 }
 
 :root[data-theme="light"] .aurora,
-:root[data-theme="prism"] .aurora {
+:root[data-theme="prism"] .aurora,
+:root[data-theme="grove"] .aurora {
   opacity: 0.34;
 }
 
@@ -481,7 +530,8 @@ p {
 }
 
 :root[data-theme="light"] .starfield,
-:root[data-theme="prism"] .starfield {
+:root[data-theme="prism"] .starfield,
+:root[data-theme="grove"] .starfield {
   opacity: 0.22;
 }
 
@@ -495,7 +545,8 @@ p {
 }
 
 :root[data-theme="light"] .ambient-pal,
-:root[data-theme="prism"] .ambient-pal {
+:root[data-theme="prism"] .ambient-pal,
+:root[data-theme="grove"] .ambient-pal {
   opacity: 0.10;
 }
 
@@ -582,7 +633,8 @@ p {
 }
 
 :root[data-theme="light"] .brand-title,
-:root[data-theme="prism"] .brand-title {
+:root[data-theme="prism"] .brand-title,
+:root[data-theme="grove"] .brand-title {
   background: linear-gradient(100deg, var(--text) 30%, var(--gold-strong) 80%);
   -webkit-background-clip: text;
   background-clip: text;
@@ -793,6 +845,7 @@ p {
 .night-swatch { background: linear-gradient(135deg, #0e192b 40%, #f2b950 40%, #5fd9e8); }
 .light-swatch { background: linear-gradient(135deg, #ffffff 40%, #078495 40%, #b57d12); }
 .prism-swatch { background: linear-gradient(135deg, #f3f4fb 35%, #7457d6 35%, #e2a63c 70%, #3578bd); }
+.grove-swatch { background: linear-gradient(135deg, #fffefa 35%, #287a58 35%, #b85f42 70%, #72529c); }
 
 /* ==========================================================================
    布局骨架 & 侧边导航

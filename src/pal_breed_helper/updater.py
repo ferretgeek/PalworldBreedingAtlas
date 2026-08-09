@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Callable
 
 
-CURRENT_VERSION = "3.5.0"
+CURRENT_VERSION = "3.5.1"
 
 
 def is_enabled() -> bool:
