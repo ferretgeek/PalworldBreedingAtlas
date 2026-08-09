@@ -2,7 +2,7 @@
   <img src="./docs/images/social-preview.png" alt="Palworld Breeding Atlas preview / 帕鲁配种图鉴预览" width="100%" />
 </p>
 
-# 帕鲁配种图鉴 / Palworld Breeding Atlas
+# Palworld Breeding Atlas — 幻兽帕鲁配种规划与图鉴 / Palworld Breeding Planner & Atlas
 
 [![CI](https://img.shields.io/github/actions/workflow/status/ferretgeek/PalworldBreedingAtlas/ci.yml?branch=main&style=flat-square&label=CI)](https://github.com/ferretgeek/PalworldBreedingAtlas/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.10%2B-14354C?style=flat-square&logo=python&logoColor=white)](https://www.python.org/)
