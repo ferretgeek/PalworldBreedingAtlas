@@ -6,6 +6,7 @@ import tempfile
 import unittest
 import zlib
 from pathlib import Path
+from unittest import mock
 
 from pal_breed_helper import save_parser, updater
 
@@ -92,6 +93,23 @@ class ParserTests(unittest.TestCase):
             save.write_bytes(header + payload)
             self.assertNotEqual(len(intermediate), len(payload))
             self.assertEqual(raw, save_parser.decompress_sav(save, None))
+
+    def test_zlib_output_is_bounded_by_declared_size(self) -> None:
+        payload = zlib.compress(b"A" * (1024 * 1024))
+        header = (32).to_bytes(4, "little") + len(payload).to_bytes(4, "little") + b"PlZ\x00"
+        with tempfile.TemporaryDirectory() as directory:
+            save = Path(directory) / "Level.sav"
+            save.write_bytes(header + payload)
+            with self.assertRaisesRegex(RuntimeError, "超过"):
+                save_parser.decompress_sav(save, None)
+
+    def test_save_input_size_is_checked_before_read(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            save = Path(directory) / "Level.sav"
+            save.write_bytes(b"x" * 65)
+            with mock.patch.object(save_parser, "MAX_SAVE_INPUT_BYTES", 64):
+                with self.assertRaisesRegex(RuntimeError, "安全上限"):
+                    save_parser.decompress_sav(save, None)
 
     def test_extract_species_ascii(self) -> None:
         needle = b"CharacterID\x00\r\x00\x00\x00NameProperty\x00"

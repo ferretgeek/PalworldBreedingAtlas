@@ -51,6 +51,10 @@ def _public_result(result: dict[str, Any]) -> dict[str, Any]:
     return public
 
 
+def _public_error(exc: BaseException) -> str:
+    return f"{type(exc).__name__}: 存档解析或静态发布失败；详细原因仅保留在本机受控日志。"
+
+
 def publish_latest(
     save_path: str | os.PathLike[str],
     output_dir: str | os.PathLike[str],
@@ -150,6 +154,7 @@ def publish_latest(
         save_parser.atomic_write_json(status_path, finished, indent=2)
         return finished
     except BaseException as exc:
+        log(f"发布失败（{type(exc).__name__}）")
         failed = dict(previous)
         failed.update(
             {
@@ -162,7 +167,7 @@ def publish_latest(
                 "sourceModifiedAt": source["modifiedAt"],
                 "sourceSize": source["size"],
                 "failedAt": _utc_iso(),
-                "lastError": str(exc)[:1000],
+                "lastError": _public_error(exc),
             }
         )
         save_parser.atomic_write_json(status_path, failed, indent=2)

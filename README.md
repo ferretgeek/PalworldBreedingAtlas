@@ -53,7 +53,7 @@ python -m pip install -e .
 pal-breed-helper
 ```
 
-程序完全离线、只读存档，并会从本机合法安装的 Palworld 或 Unreal Engine 目录寻找 `oo2core_*_win64.dll`。仓库不分发 Oodle DLL；如果系统找不到，旧 zlib 存档仍可读取，新格式存档会给出明确提示。
+程序完全离线、只读存档，并会从本机合法安装的 Palworld 或 Unreal Engine 目录寻找 `oo2core_*_win64.dll`。仓库不分发 Oodle DLL；如果系统找不到，旧 zlib 存档仍可读取，新格式存档会给出明确提示。存档读取、zlib 每层输出与库存 JSON 导入均有解析前安全上限；超大可信存档可通过 `PAL_HELPER_MAX_SAVE_INPUT_BYTES`、`PAL_HELPER_MAX_UNCOMPRESSED_BYTES` 和 `PAL_HELPER_MAX_ZLIB_INTERMEDIATE_BYTES` 显式调整。
 
 The app is offline and read-only. It discovers `oo2core_*_win64.dll` from a lawful local Palworld or Unreal Engine installation. The proprietary Oodle DLL is not distributed in this repository.
 

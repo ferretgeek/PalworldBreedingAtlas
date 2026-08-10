@@ -478,6 +478,9 @@
   const REVERSE_CACHE_KEY = "pal-breed-helper.reverse-cache.v1";
   const THEME_KEY = "pal-breed-helper.theme";
   const THEMES = new Set(["night", "light", "prism", "grove"]);
+  const MAX_IMPORT_FILE_BYTES = 5 * 1024 * 1024;
+  const MAX_IMPORT_RECORDS = 5000;
+  const MAX_IMPORT_INDIVIDUALS = 20000;
   const EXPECTED_PAL_COUNT = 287;
   const TYPE_LABELS = {
     normal: "普通",
@@ -3955,6 +3958,11 @@
   function handleInventoryFile(event) {
     const file = event.target.files && event.target.files[0];
     if (!file) return;
+    if (file.size > MAX_IMPORT_FILE_BYTES) {
+      showToast("导入失败：文件超过 5 MiB 安全上限");
+      event.target.value = "";
+      return;
+    }
     const reader = new FileReader();
     reader.onload = () => {
       try {
@@ -3970,18 +3978,27 @@
   }
 
   function importStatePayload(data) {
+    if (!data || typeof data !== "object" || Array.isArray(data)) throw new Error("库存根节点必须是对象");
     const rows = [];
     if (Array.isArray(data.owned)) {
+      if (data.owned.length > MAX_IMPORT_RECORDS) throw new Error("库存记录超过 5000 条安全上限");
       for (const item of data.owned) {
         if (typeof item === "string") rows.push({ key: item, count: null });
         else if (item && item.key !== undefined) rows.push(item);
       }
     } else if (Array.isArray(data.ownedKeys)) {
+      if (data.ownedKeys.length > MAX_IMPORT_RECORDS) throw new Error("库存记录超过 5000 条安全上限");
       for (const key of data.ownedKeys) rows.push({ key, count: null, source: "import" });
     } else if (data.state && Array.isArray(data.state.owned)) {
+      if (data.state.owned.length > MAX_IMPORT_RECORDS) throw new Error("库存记录超过 5000 条安全上限");
       for (const item of data.state.owned) rows.push(typeof item === "string" ? { key: item } : item);
     }
     if (!rows.length) throw new Error("文件中没有 owned 或 ownedKeys 库存数据");
+    let individualCount = 0;
+    for (const item of rows) {
+      if (item && typeof item === "object" && Array.isArray(item.individuals)) individualCount += item.individuals.length;
+      if (individualCount > MAX_IMPORT_INDIVIDUALS) throw new Error("个体记录超过 20000 条安全上限");
+    }
     let added = 0;
     let updated = 0;
     let unknown = 0;

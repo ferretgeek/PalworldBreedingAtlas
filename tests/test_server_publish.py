@@ -107,7 +107,24 @@ class ServerPublishTests(unittest.TestCase):
             self.assertEqual("old-signature", persisted["publishedSignature"])
             self.assertFalse(persisted["busy"])
             self.assertFalse(persisted["fresh"])
-            self.assertIn("解析失败", persisted["lastError"])
+            self.assertNotIn("解析失败", persisted["lastError"])
+            self.assertIn("详细原因仅保留", persisted["lastError"])
+
+    def test_failed_refresh_does_not_persist_absolute_paths(self) -> None:
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            save = root / "Level.sav"
+            save.write_bytes(b"new-save")
+            output = root / "public"
+            with mock.patch.object(
+                server_publish.save_parser,
+                "analyze_save",
+                side_effect=RuntimeError(f"cannot parse {save}"),
+            ):
+                with self.assertRaises(RuntimeError):
+                    server_publish.publish_latest(save, output, log=lambda _: None)
+            persisted = (output / server_publish.STATUS_FILE_NAME).read_text(encoding="utf-8")
+            self.assertNotIn(str(root), persisted)
 
 
 if __name__ == "__main__":

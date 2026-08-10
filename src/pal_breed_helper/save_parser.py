@@ -22,7 +22,13 @@ OWNED_FILE_NAME = "owned-pals.json"
 GENERATED_HTML_NAME = "帕鲁配种_已载入存档.html"
 GENERATED_DIR_NAME = "generated"
 MAX_UNCOMPRESSED_BYTES = int(
-    os.environ.get("PAL_HELPER_MAX_UNCOMPRESSED_BYTES", 2 * 1024 * 1024 * 1024)
+    os.environ.get("PAL_HELPER_MAX_UNCOMPRESSED_BYTES", 512 * 1024 * 1024)
+)
+MAX_SAVE_INPUT_BYTES = int(
+    os.environ.get("PAL_HELPER_MAX_SAVE_INPUT_BYTES", 256 * 1024 * 1024)
+)
+MAX_ZLIB_INTERMEDIATE_BYTES = int(
+    os.environ.get("PAL_HELPER_MAX_ZLIB_INTERMEDIATE_BYTES", 256 * 1024 * 1024)
 )
 
 _cache: dict | None = None
@@ -503,6 +509,10 @@ def _read_stable_bytes(
         _check_cancel(cancel_event)
         try:
             before = target.stat()
+            if before.st_size > MAX_SAVE_INPUT_BYTES:
+                raise RuntimeError(
+                    f"存档文件超过 {MAX_SAVE_INPUT_BYTES:,} 字节安全上限。"
+                )
             with target.open("rb") as source:
                 data = source.read()
             after = target.stat()
@@ -522,6 +532,23 @@ def _read_stable_bytes(
             else:
                 time.sleep(retry_delay)
     raise RuntimeError(f"存档正在变化或暂时无法读取：{target}") from last_error
+
+
+def _bounded_zlib_decompress(payload: bytes, limit: int, label: str) -> bytes:
+    import zlib
+
+    if limit <= 0:
+        raise RuntimeError(f"{label}声明的长度无效。")
+    decoder = zlib.decompressobj()
+    try:
+        result = decoder.decompress(payload, limit + 1)
+    except zlib.error as exc:
+        raise RuntimeError(f"{label}不是有效的 zlib 数据。") from exc
+    if len(result) > limit or decoder.unconsumed_tail:
+        raise RuntimeError(f"{label}解压结果超过 {limit:,} 字节安全上限。")
+    if not decoder.eof or decoder.unused_data:
+        raise RuntimeError(f"{label}zlib 数据不完整或包含尾随内容。")
+    return result
 
 
 def decompress_sav(
@@ -549,10 +576,13 @@ def decompress_sav(
     if magic == b"PlZ":
         if save_type not in (0x00, 0x31, 0x32):
             raise RuntimeError(f"不支持的 zlib 存档类型: 0x{save_type:02X}")
-        import zlib
-
         if save_type == 0x32:
-            intermediate = zlib.decompress(body)
+            intermediate_limit = compressed_size or MAX_ZLIB_INTERMEDIATE_BYTES
+            if intermediate_limit > MAX_ZLIB_INTERMEDIATE_BYTES:
+                raise RuntimeError("zlib 中间层声明尺寸超过安全上限。")
+            intermediate = _bounded_zlib_decompress(
+                body, intermediate_limit, "zlib 中间层"
+            )
             # In the double-zlib format this header field describes the
             # decompressed outer layer, not the on-disk body length.
             if compressed_size not in (0, len(intermediate)):
@@ -560,13 +590,15 @@ def decompress_sav(
                     "zlib 中间层长度异常："
                     f"{len(intermediate)} != {compressed_size}"
                 )
-            raw = zlib.decompress(intermediate)
+            raw = _bounded_zlib_decompress(
+                intermediate, uncompressed_size, "zlib 存档"
+            )
         else:
             if compressed_size not in (0, len(body)):
                 raise RuntimeError(
                     f"存档压缩长度异常：{compressed_size} != {len(body)}"
                 )
-            raw = zlib.decompress(body)
+            raw = _bounded_zlib_decompress(body, uncompressed_size, "zlib 存档")
         if len(raw) != uncompressed_size:
             raise RuntimeError(
                 f"zlib 解压字节数异常: {len(raw)} != {uncompressed_size}"

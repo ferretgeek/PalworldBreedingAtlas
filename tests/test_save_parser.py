@@ -258,6 +258,9 @@ class WebAssetTests(unittest.TestCase):
 
         html = (assets / "index.html").read_text(encoding="utf-8")
         script = (assets / "app.js").read_text(encoding="utf-8")
+        self.assertIn("MAX_IMPORT_FILE_BYTES", script)
+        self.assertIn("MAX_IMPORT_RECORDS", script)
+        self.assertIn("file.size > MAX_IMPORT_FILE_BYTES", script)
         styles = (assets / "styles.css").read_text(encoding="utf-8")
         for theme in ("night", "light", "prism", "grove"):
             self.assertIn(f'data-theme-option="{theme}"', html)
